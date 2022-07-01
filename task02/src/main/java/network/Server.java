@@ -21,20 +21,24 @@ public class Server {
 
                 InputStream is = sock.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(is);
+
+                String requestId = "1234abcd";
+                String listOfIntegers = "97,35,82,2,45";
+                oos.writeUTF(requestId + " " + listOfIntegers);
+                oos.flush();
             
+                String reponse = ois.readUTF();
             
-                String request = ois.readUTF();
-            
-                if(!request.contains("1234abcd"))
+                if(!reponse.contains("1234abcd"))
             oos.writeUTF("Invalid request id");
 
-                if(!request.contains("Andy Ng Zhi Phang"))
+                if(!reponse.contains("Andy Ng Zhi Phang"))
                 oos.writeUTF("Invalid user"); 
 
-                if(!request.contains("andyng3399@hotmail.com"))
+                if(!reponse.contains("andyng3399@hotmail.com"))
                 oos.writeUTF("Invalid email address");
 
-                if(!request.contains("52.2"))
+                if(!reponse.contains("52.2"))
                 oos.writeUTF("Incorrect Average");
                 oos.flush();
 
