@@ -64,7 +64,10 @@ public class Client {
                 return average;
             }    
     public static boolean readBoolean(String response) {
-
+        
+        if(response.equals("false")){
+            return false;   
+    }
         return false;
     }
 
